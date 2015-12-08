@@ -78,7 +78,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "kafka1" do |kafka1|
 	   kafka1.vm.provider "virtualbox"  do |vb| 
-			vb.memory = "1152"
+			vb.memory = "1600"
 	   end
        kafka1.vm.box = "ubuntu/trusty64"
        kafka1.vm.network "private_network", ip: "192.168.33.11"
@@ -88,7 +88,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "kafka2" do |kafka2|
 	   kafka2.vm.provider "virtualbox"  do |vb| 
-			vb.memory = "1152"
+			vb.memory = "1600"
 	   end
        kafka2.vm.box = "ubuntu/trusty64"
        kafka2.vm.network "private_network", ip: "192.168.33.12"
@@ -98,7 +98,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "kafka3", autostart: false  do |kafka3|
 	   kafka3.vm.provider "virtualbox"  do |vb| 
-			vb.memory = "1152"
+			vb.memory = "1600"
 	   end
        kafka3.vm.box = "ubuntu/trusty64"
        kafka3.vm.network "private_network", ip: "192.168.33.13"
