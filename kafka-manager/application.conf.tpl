@@ -60,8 +60,7 @@ logger.play=INFO
 # Logger provided to your application:
 logger.application=DEBUG
 
-kafka-manager.zkhosts="kafka-manager-zookeeper:2181"
-kafka-manager.zkhosts=${?ZK_HOSTS}
+kafka-manager.zkhosts="%%ZOOKEEPER_IP_ADDRESS%%:2181"
 pinned-dispatcher.type="PinnedDispatcher"
 pinned-dispatcher.executor="thread-pool-executor"
 

@@ -66,18 +66,39 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
 
-  config.vm.define "manager" do |manager|
-       manager.vm.box = "ubuntu/trusty64"
-       manager.vm.network "private_network", ip: "192.168.33.11"
-       manager.vm.provision :shell, path: "common/install-jdk.sh"
-       manager.vm.provision :shell, path: "kafka-manager/bootstrap.sh"
+  config.vm.define "zookeeper" do |zookeeper|
+       zookeeper.vm.box = "ubuntu/trusty64"
+       zookeeper.vm.network "private_network", ip: "192.168.33.10"
+       zookeeper.vm.provision :shell, path: "common/install-jdk.sh"
+       zookeeper.vm.provision :shell, path: "zookeeper/bootstrap.sh"
   end
 
-  config.vm.define "kafka" do |kafka|
-       kafka.vm.box = "ubuntu/trusty64"
-       kafka.vm.network "private_network", ip: "192.168.33.10"
-       kafka.vm.provision :shell, path: "common/install-jdk.sh"
-       kafka.vm.provision :shell, path: "kafka/bootstrap.sh"
+  config.vm.define "kafka1" do |kafka1|
+       kafka1.vm.box = "ubuntu/trusty64"
+       kafka1.vm.network "private_network", ip: "192.168.33.11"
+       kafka1.vm.provision :shell, path: "common/install-jdk.sh"
+       kafka1.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.11"]
+  end
+
+  config.vm.define "kafka2" do |kafka2|
+       kafka2.vm.box = "ubuntu/trusty64"
+       kafka2.vm.network "private_network", ip: "192.168.33.12"
+       kafka2.vm.provision :shell, path: "common/install-jdk.sh"
+       kafka2.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.12"]
+  end
+
+  config.vm.define "kafka3" do |kafka3|
+       kafka3.vm.box = "ubuntu/trusty64"
+       kafka3.vm.network "private_network", ip: "192.168.33.13"
+       kafka3.vm.provision :shell, path: "common/install-jdk.sh"
+       kafka3.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.13"]
+  end
+
+  config.vm.define "manager" do |manager|
+       manager.vm.box = "ubuntu/trusty64"
+       manager.vm.network "private_network", ip: "192.168.33.14"
+       manager.vm.provision :shell, path: "common/install-jdk.sh"
+       manager.vm.provision :shell, path: "kafka-manager/bootstrap.sh", args: ["192.168.33.10"]
   end
 
 end
