@@ -13,5 +13,4 @@ cd /usr/local/lib/${ZK_DIR}
 
 cp conf/zoo_sample.cfg conf/zoo.cfg
 
-bin/zkServer.sh start
-
+bin/zkServer.sh start &

@@ -67,6 +67,9 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
 
   config.vm.define "zookeeper" do |zookeeper|
+	   zookeeper.vm.provider "virtualbox"  do |vb| 
+			vb.memory = "640"
+	   end
        zookeeper.vm.box = "ubuntu/trusty64"
        zookeeper.vm.network "private_network", ip: "192.168.33.10"
        zookeeper.vm.provision :shell, path: "common/install-jdk.sh"
@@ -74,27 +77,39 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "kafka1" do |kafka1|
+	   kafka1.vm.provider "virtualbox"  do |vb| 
+			vb.memory = "1152"
+	   end
        kafka1.vm.box = "ubuntu/trusty64"
        kafka1.vm.network "private_network", ip: "192.168.33.11"
        kafka1.vm.provision :shell, path: "common/install-jdk.sh"
-       kafka1.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.11"]
+       kafka1.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.11", "1"]
   end
 
   config.vm.define "kafka2" do |kafka2|
+	   kafka2.vm.provider "virtualbox"  do |vb| 
+			vb.memory = "1152"
+	   end
        kafka2.vm.box = "ubuntu/trusty64"
        kafka2.vm.network "private_network", ip: "192.168.33.12"
        kafka2.vm.provision :shell, path: "common/install-jdk.sh"
-       kafka2.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.12"]
+       kafka2.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.12", "2"]
   end
 
-  config.vm.define "kafka3" do |kafka3|
+  config.vm.define "kafka3", autostart: false  do |kafka3|
+	   kafka3.vm.provider "virtualbox"  do |vb| 
+			vb.memory = "1152"
+	   end
        kafka3.vm.box = "ubuntu/trusty64"
        kafka3.vm.network "private_network", ip: "192.168.33.13"
        kafka3.vm.provision :shell, path: "common/install-jdk.sh"
-       kafka3.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.13"]
+       kafka3.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.13", "3"]
   end
 
-  config.vm.define "manager" do |manager|
+  config.vm.define "manager", autostart: false do |manager|
+	   manager.vm.provider "virtualbox"  do |vb| 
+			vb.memory = "1520"
+	   end
        manager.vm.box = "ubuntu/trusty64"
        manager.vm.network "private_network", ip: "192.168.33.14"
        manager.vm.provision :shell, path: "common/install-jdk.sh"
