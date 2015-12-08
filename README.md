@@ -1,2 +1,6 @@
 # kafka-sandbox
-Start with vagrant up
+Start with following command
+
+```bash
+vagrant up
+```
