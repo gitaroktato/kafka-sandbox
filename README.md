@@ -3,6 +3,17 @@ Start with following command
 ```bash
 vagrant up
 ```
+Bring up management node
+```bash
+vagrant up manager
+```
+
+Bring up third kafka node
+```bash
+vagrant up kafka3
+```
+
+
 
 # Hosts
 
