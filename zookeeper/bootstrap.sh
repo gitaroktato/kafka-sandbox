@@ -6,11 +6,18 @@ ZK_DIR=${ZK_PACKAGE_NAME%%.tar.gz}
 
 # Install Kafka
 cd /tmp
-wget -O ${ZK_DIR} ${ZK_WWW_LOCATION}
+wget -O ${ZK_PACKAGE_NAME} ${ZK_WWW_LOCATION}
 tar xzvf ./${ZK_PACKAGE_NAME} -C /usr/local/lib
 rm ${ZK_PACKAGE_NAME}
 cd /usr/local/lib/${ZK_DIR}
 
 cp conf/zoo_sample.cfg conf/zoo.cfg
 
-./bin/zkServer.sh start &
+# Creating entrypotnt
+echo "/usr/local/lib/${ZK_DIR}/bin/zkServer.sh start" > /entrypoint.sh
+chmod u+x /entrypoint.sh
+
+echo '@reboot /entrypoint.sh' >> /etc/crontab
+
+# Auto start
+/entrypoint.sh &

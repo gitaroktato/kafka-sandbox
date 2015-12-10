@@ -18,6 +18,11 @@ cat /vagrant/kafka/server.properties.tpl \
 	| sed -e "s/%%BROKER_ID%%/${KAFKA_BROKER_ID}/g" >  /usr/local/lib/${KAFKA_DIR}/config/server.properties
 cd /usr/local/lib/${KAFKA_DIR}
 
+# Creating entrypotnt
+echo "/usr/local/lib/${KAFKA_DIR}/bin/kafka-server-start.sh /usr/local/lib/${KAFKA_DIR}/config/server.properties" > /entrypoint.sh
+chmod u+x /entrypoint.sh
 
-bin/kafka-server-start.sh config/server.properties &
+echo '@reboot /entrypoint.sh' >> /etc/crontab
 
+# Auto start
+/entrypoint.sh &
