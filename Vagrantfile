@@ -74,7 +74,7 @@ Vagrant.configure(2) do |config|
        zookeeper.vm.network "private_network", ip: "192.168.33.10"
        zookeeper.vm.provision :shell, path: "common/install-jdk.sh"
        zookeeper.vm.provision :shell, path: "zookeeper/bootstrap.sh"
-       zookeeper.vm.provision :shell, run: "always", inline: "/entrypoint.sh"
+       zookeeper.vm.provision :shell, run: "always", inline: "/entrypoint.sh &"
   end
 
   config.vm.define "kafka1" do |kafka1|
@@ -85,7 +85,7 @@ Vagrant.configure(2) do |config|
        kafka1.vm.network "private_network", ip: "192.168.33.11"
        kafka1.vm.provision :shell, path: "common/install-jdk.sh"
        kafka1.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.11", "1"]
-       kafka1.vm.provision :shell, run: "always", inline: "/entrypoint.sh"
+       kafka1.vm.provision :shell, run: "always", inline: "/entrypoint.sh &"
   end
 
   config.vm.define "kafka2" do |kafka2|
@@ -96,7 +96,7 @@ Vagrant.configure(2) do |config|
        kafka2.vm.network "private_network", ip: "192.168.33.12"
        kafka2.vm.provision :shell, path: "common/install-jdk.sh"
        kafka2.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.12", "2"]
-       kafka2.vm.provision :shell, run: "always", inline: "/entrypoint.sh"
+       kafka2.vm.provision :shell, run: "always", inline: "/entrypoint.sh &"
   end
 
   config.vm.define "kafka3", autostart: false  do |kafka3|
@@ -107,7 +107,7 @@ Vagrant.configure(2) do |config|
        kafka3.vm.network "private_network", ip: "192.168.33.13"
        kafka3.vm.provision :shell, path: "common/install-jdk.sh"
        kafka3.vm.provision :shell, path: "kafka/bootstrap.sh", args: ["192.168.33.10", "192.168.33.13", "3"]
-       kafka3.vm.provision :shell, run: "always", inline: "/entrypoint.sh"
+       kafka3.vm.provision :shell, run: "always", inline: "/entrypoint.sh &"
   end
 
   config.vm.define "manager", autostart: false do |manager|
@@ -118,7 +118,7 @@ Vagrant.configure(2) do |config|
        manager.vm.network "private_network", ip: "192.168.33.14"
        manager.vm.provision :shell, path: "common/install-jdk.sh"
        manager.vm.provision :shell, path: "kafka-manager/bootstrap.sh", args: ["192.168.33.10"]
-       manager.vm.provision :shell, run: "always", inline: "/entrypoint.sh"
+       manager.vm.provision :shell, run: "always", inline: "/entrypoint.sh &"
   end
 
 end

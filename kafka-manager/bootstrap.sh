@@ -23,7 +23,3 @@ cat /vagrant/kafka-manager/application.conf.tpl | sed -e "s/%%ZOOKEEPER_IP_ADDRE
 echo "/usr/local/lib/${KAFKA_MANAGER_DIR}/bin/kafka-manager -Dconfig.file=/usr/local/lib/${KAFKA_MANAGER_DIR}/conf/application.conf" > /entrypoint.sh
 chmod u+x /entrypoint.sh
 
-echo '@reboot /entrypoint.sh' >> /etc/crontab
-
-# Auto start
-/entrypoint.sh &

@@ -21,8 +21,3 @@ cd /usr/local/lib/${KAFKA_DIR}
 # Creating entrypotnt
 echo "/usr/local/lib/${KAFKA_DIR}/bin/kafka-server-start.sh /usr/local/lib/${KAFKA_DIR}/config/server.properties" > /entrypoint.sh
 chmod u+x /entrypoint.sh
-
-echo '@reboot /entrypoint.sh' >> /etc/crontab
-
-# Auto start
-/entrypoint.sh &

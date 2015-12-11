@@ -16,8 +16,3 @@ cp conf/zoo_sample.cfg conf/zoo.cfg
 # Creating entrypotnt
 echo "/usr/local/lib/${ZK_DIR}/bin/zkServer.sh start" > /entrypoint.sh
 chmod u+x /entrypoint.sh
-
-echo '@reboot /entrypoint.sh' >> /etc/crontab
-
-# Auto start
-/entrypoint.sh &
