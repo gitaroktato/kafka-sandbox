@@ -1,4 +1,7 @@
 # kafka-sandbox
+
+You need vagrant client for building the environment.
+
 Start with following command
 ```bash
 vagrant up
