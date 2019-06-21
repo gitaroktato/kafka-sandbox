@@ -1,4 +1,5 @@
 # kafka-sandbox
+Run a sample Kafka cluster with kafka-manager using Docker and docker-compose
 
 Edit `KAFKA_ADVERTISED_HOST_NAME` in `docker-compose.yml` file.
 
