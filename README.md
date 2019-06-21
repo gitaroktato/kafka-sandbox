@@ -11,3 +11,6 @@ Bring up second kafka node
 ```bash
 docker-compose scale kafka=2
 ```
+
+Kafka manager is available at `http://${DOCKER_HOST}:9000`
+Zookeeper web UI is running at `http://${DOCKER_HOST}:9000`
