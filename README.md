@@ -1,30 +1,13 @@
 # kafka-sandbox
 
-You need vagrant client for building the environment.
+Edit `KAFKA_ADVERTISED_HOST_NAME` in `docker-compose.yml` file.
 
 Start with following command
 ```bash
-vagrant up
+docker-compose up
 ```
-Bring up management node
+
+Bring up second kafka node
 ```bash
-vagrant up manager
+docker-compose scale kafka=2
 ```
-
-Bring up third kafka node
-```bash
-vagrant up kafka3
-```
-
-
-
-# Hosts
-
-| Address           |  Role      | 
-|--------------------|-----------|
-| 192.168.33.10:2181 | Zookeeper |
-| 192.168.33.11:9092 | Kafka node |
-| 192.168.33.12:9092 | Kafka node |
-| 192.168.33.13:9092 | Kafka node |
-| 192.168.33.14:9000 | Yahoo kafka manager |
-
