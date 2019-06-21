@@ -11,6 +11,8 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 192.168.99.106
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   kafka-manager:
     image: kafkamanager/kafka-manager
     ports:
