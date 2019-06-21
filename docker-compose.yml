@@ -4,6 +4,12 @@ services:
     image: zookeeper
     ports:
       - "2181:2181"
+  zookeeper-ui:
+    image: tobilg/zookeeper-webui
+    ports:
+      - 8080:8080
+    environment:
+      ZK_DEFAULT_NODE: zookeeper:2181
   kafka:
     image: wurstmeister/kafka:1.0.1
     ports:
